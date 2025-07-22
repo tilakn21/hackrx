@@ -2,7 +2,9 @@ services:
   - type: web
     name: hackrx-llm-api
     env: python
-    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    buildCommand: |
+      pip install --upgrade pip setuptools wheel
+      pip install --no-cache-dir --prefer-binary -r requirements.txt
     startCommand: python main.py
     plan: free
     autoDeploy: false
@@ -13,8 +15,8 @@ services:
         value: "10000"
       - key: PYTHONPATH
         value: "."
+      - key: PIP_PREFER_BINARY
+        value: "1"
+      - key: PIP_NO_BUILD_ISOLATION
+        value: "false"
     healthCheckPath: /health
-    disk:
-      name: hackrx-disk
-      mountPath: /tmp
-      sizeGB: 1
