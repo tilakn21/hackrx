@@ -643,8 +643,8 @@ if __name__ == "__main__":
     import uvicorn
     
     # Get port from environment variable for deployment platforms
-    # Render uses port 10000 by default for free tier
-    port = int(os.environ.get("PORT", 10000))
+    # AWS EC2: 8000, Render: 10000, Local: 8000
+    port = int(os.environ.get("PORT", 8000))
     
     # Run the application
     uvicorn.run(
