@@ -1,0 +1,12 @@
+Document Context Extraction Report
+Generated at: 2025-07-22 16:51:24
+Total chunks: 1
+================================================================================
+
+CHUNK 1
+Page: 1
+Content Length: 14 characters
+Content:
+Dummy PDF file
+----------------------------------------
+

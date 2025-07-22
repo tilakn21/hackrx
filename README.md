@@ -129,6 +129,41 @@ The system includes a simulation mode for LLM responses when API keys are not av
 
 ## Production Deployment
 
+### Local Development
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python main.py
+
+# Test the application
+python test_app.py
+```
+
+### Render Deployment (Free Tier)
+
+This application is optimized for deployment on Render's free tier. See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+
+**Quick Deployment:**
+1. Push your code to GitHub
+2. Connect GitHub repo to Render
+3. Configure environment variables
+4. Deploy automatically
+
+**Render Configuration:**
+- **Build Command**: `pip install --upgrade pip && pip install -r requirements.txt`
+- **Start Command**: `python main.py`
+- **Health Check**: `/health`
+- **Port**: 10000 (automatically configured)
+
+### Environment Variables
+```bash
+PYTHONUNBUFFERED=1
+PORT=10000
+PYTHONPATH=.
+```
+
 For production deployment:
 
 1. Set up proper environment variables for API keys
@@ -137,6 +172,13 @@ For production deployment:
 4. Implement caching for frequently accessed documents
 5. Add rate limiting and request queuing
 6. Set up health checks and metrics
+
+## Testing
+
+Run the test script to verify everything works:
+```bash
+python test_app.py
+```
 
 ## Dependencies
 
@@ -147,6 +189,20 @@ For production deployment:
 - **tiktoken**: Token counting
 - **aiohttp**: Async HTTP client
 - **OpenAI**: LLM integration (optional)
+
+## Files Structure
+```
+├── main.py              # Main FastAPI application
+├── config.py            # Configuration and constants
+├── requirements.txt     # Python dependencies
+├── render.yaml         # Render deployment configuration
+├── Procfile            # Process configuration
+├── runtime.txt         # Python version specification
+├── Dockerfile          # Docker configuration (optional)
+├── test_app.py         # Local testing script
+├── DEPLOYMENT.md       # Detailed deployment guide
+└── README.md           # This file
+```
 
 ## License
 

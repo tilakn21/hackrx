@@ -2,13 +2,19 @@ services:
   - type: web
     name: hackrx-llm-api
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python main.py
     plan: free
     autoDeploy: false
     envVars:
       - key: PYTHONUNBUFFERED
-        value: 1
+        value: "1"
       - key: PORT
-        value: 8000
+        value: "10000"
+      - key: PYTHONPATH
+        value: "."
     healthCheckPath: /health
+    disk:
+      name: hackrx-disk
+      mountPath: /tmp
+      sizeGB: 1

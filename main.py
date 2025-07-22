@@ -643,7 +643,8 @@ if __name__ == "__main__":
     import uvicorn
     
     # Get port from environment variable for deployment platforms
-    port = int(os.environ.get("PORT", 8000))
+    # Render uses port 10000 by default for free tier
+    port = int(os.environ.get("PORT", 10000))
     
     # Run the application
     uvicorn.run(
@@ -651,5 +652,6 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=port,
         log_level="info",
-        access_log=True
+        access_log=True,
+        workers=1  # Single worker for free tier to avoid memory issues
     )
